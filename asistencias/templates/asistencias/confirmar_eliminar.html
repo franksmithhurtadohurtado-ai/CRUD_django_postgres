@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar</title>
+</head>
+
+<body>
+
+<h1>¿Eliminar a {{ asistencia.nombres }} {{ asistencia.apellidos }}?</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+</form>
+
+<br>
+
+<a href="/asistencias/lista/">Cancelar</a>
+
+</body>
+
+</html>

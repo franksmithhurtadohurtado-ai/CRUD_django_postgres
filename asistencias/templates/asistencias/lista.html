@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Asistencias</title>
+</head>
+
+<body>
+
+<h1>Lista de asistencias</h1>
+
+<a href="/asistencias/">Nuevo registro</a>
+
+<hr>
+
+{% for a in asistencias %}
+
+    <h3>{{ a.nombres }} {{ a.apellidos }}</h3>
+
+    <p>{{ a.tipo_documento }} {{ a.documento }}</p>
+
+    <p>WhatsApp: {{ a.whatsapp }}</p>
+
+    <p>Fecha: {{ a.fecha|date:"d/m/Y" }}</p>
+
+    <p>Asistió: {% if a.asistio %}Sí{% else %}No{% endif %}</p>
+
+    <a href="/asistencias/detalle/{{ a.id }}/">Ver</a>
+    |
+    <a href="/asistencias/editar/{{ a.id }}/">Editar</a>
+    |
+    <a href="/asistencias/eliminar/{{ a.id }}/">Eliminar</a>
+
+    <hr>
+
+{% empty %}
+
+    <p>No hay registros.</p>
+
+{% endfor %}
+
+</body>
+
+</html>

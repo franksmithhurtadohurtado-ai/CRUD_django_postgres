@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Asistencia</title>
+</head>
+
+<body>
+
+<h1>Registro de asistencia</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <p>
+        <label>Tipo de documento:</label><br>
+        <select name="tipo_documento" required>
+            <option value="CC" {% if asistencia.tipo_documento == "CC" %}selected{% endif %}>CC</option>
+            <option value="TI" {% if asistencia.tipo_documento == "TI" %}selected{% endif %}>TI</option>
+            <option value="CE" {% if asistencia.tipo_documento == "CE" %}selected{% endif %}>CE</option>
+            <option value="PA" {% if asistencia.tipo_documento == "PA" %}selected{% endif %}>PA</option>
+        </select>
+    </p>
+
+    <p>
+        <label>Documento:</label><br>
+        <input type="text" name="documento"
+               value="{{ asistencia.documento|default:'' }}" required>
+    </p>
+
+    <p>
+        <label>Nombres:</label><br>
+        <input type="text" name="nombres"
+               value="{{ asistencia.nombres|default:'' }}" required>
+    </p>
+
+    <p>
+        <label>Apellidos:</label><br>
+        <input type="text" name="apellidos"
+               value="{{ asistencia.apellidos|default:'' }}" required>
+    </p>
+
+    <p>
+        <label>WhatsApp:</label><br>
+        <input type="text" name="whatsapp"
+               value="{{ asistencia.whatsapp|default:'' }}" required>
+    </p>
+
+    <p>
+        <label>Fecha:</label><br>
+        <input type="date" name="fecha"
+               value="{{ asistencia.fecha|date:'Y-m-d' }}" required>
+    </p>
+
+    <p>
+        <label>
+            <input type="checkbox" name="asistio"
+                   {% if asistencia.asistio %}checked{% endif %}>
+            Asistió
+        </label>
+    </p>
+
+    <button type="submit">Guardar</button>
+
+</form>
+
+<br>
+
+<a href="/asistencias/lista/">Ver asistencias</a>
+
+</body>
+
+</html>
