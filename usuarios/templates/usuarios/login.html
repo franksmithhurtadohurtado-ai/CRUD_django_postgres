@@ -1,0 +1,13 @@
+{% extends "asistencias/base.html" %}
+{% block titulo %}Iniciar sesión{% endblock %}
+{% block contenido %}
+  <h2>Iniciar sesión</h2>
+  {% if error %}<div class="aviso">{{ error }}</div>{% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <p><label>Usuario</label><input type="text" name="username" required></p>
+    <p><label>Contraseña</label><input type="password" name="password" required></p>
+    <button class="btn" type="submit">Entrar</button>
+  </form>
+  <p><a href="{% url 'registro' %}">¿No tienes cuenta? Regístrate</a></p>
+{% endblock %}

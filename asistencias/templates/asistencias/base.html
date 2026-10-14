@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Asistencias{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'asistencias/style.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Registro de asistencia</h1>
+    <p style="margin: 6px 0 0;">
+      {% if user.is_authenticated %}
+        Hola, <strong>{{ user.username }}</strong> |
+        <a href="{% url 'logout' %}" style="color: white;">Cerrar sesión</a>
+      {% else %}
+        <a href="{% url 'login' %}" style="color: white;">Iniciar sesión</a> |
+        <a href="{% url 'registro' %}" style="color: white;">Registrarse</a>
+      {% endif %}
+    </p>
+  </header>
+  <main>
+    {% block contenido %}{% endblock %}
+  </main>
+</body>
+</html>

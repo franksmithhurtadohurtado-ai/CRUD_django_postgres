@@ -1,0 +1,15 @@
+{% extends "asistencias/base.html" %}
+{% block titulo %}Crear cuenta{% endblock %}
+{% block contenido %}
+  <h2>Crear cuenta</h2>
+  {% if error %}<div class="aviso">{{ error }}</div>{% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <p><label>Usuario</label><input type="text" name="username" required></p>
+    <p><label>Correo</label><input type="email" name="email" required></p>
+    <p><label>Contraseña</label><input type="password" name="password1" required></p>
+    <p><label>Repetir contraseña</label><input type="password" name="password2" required></p>
+    <button class="btn" type="submit">Registrarme</button>
+  </form>
+  <p><a href="{% url 'login' %}">¿Ya tienes cuenta? Inicia sesión</a></p>
+{% endblock %}

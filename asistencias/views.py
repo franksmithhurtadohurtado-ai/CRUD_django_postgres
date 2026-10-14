@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Asistencia
 
 
 # CREAR
+@login_required
 def crear(request):
 
     if request.method == "POST":
@@ -23,6 +25,7 @@ def crear(request):
 
 
 # LISTAR
+@login_required
 def listar(request):
 
     asistencias = Asistencia.objects.all().order_by("-fecha", "apellidos")
@@ -35,6 +38,7 @@ def listar(request):
 
 
 # VER
+@login_required
 def detalle(request, id):
 
     asistencia = get_object_or_404(Asistencia, id=id)
@@ -47,6 +51,7 @@ def detalle(request, id):
 
 
 # EDITAR
+@login_required
 def editar(request, id):
 
     asistencia = get_object_or_404(Asistencia, id=id)
@@ -72,7 +77,9 @@ def editar(request, id):
     )
 
 
+
 # ELIMINAR
+@login_required
 def eliminar(request, id):
 
     asistencia = get_object_or_404(Asistencia, id=id)
